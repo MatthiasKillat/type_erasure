@@ -9,6 +9,7 @@
 //The file could be generated automatically from the concept interface.
 
 //class capable of holding any object implementing PushPopInterface
+//implements copy and move behavior of the actual type
 template <typename ValueType>
 class AnyPushPop
 {

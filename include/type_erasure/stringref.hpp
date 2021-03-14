@@ -1,9 +1,12 @@
 #pragma once
 #include "concepts/member_func_check.hpp"
 
+#include <memory>
+#include <iostream>
+
 GENERATE_HAS_FUNC(c_str);
 
-//simplified interface
+//simplified interface for demo purposes
 class StringInterface
 {
 public:
@@ -11,9 +14,6 @@ public:
 
     virtual const char *c_str() = 0;
 };
-
-#include <memory>
-#include <iostream>
 
 class StringRef
 {
