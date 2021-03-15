@@ -78,6 +78,7 @@ public:
 
     AnyPushPop(AnyPushPop &&other) : m_delegate(other.m_delegate)
     {
+        other.m_delegate = nullptr;
     }
 
     AnyPushPop &operator=(const AnyPushPop &other)
