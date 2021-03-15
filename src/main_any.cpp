@@ -16,6 +16,20 @@ int main(int argc, char **argv)
 
     Any any(stack);
 
+    //accessing the underlying type requires guessing it ...
+    //there is no other way within the C++ language (to my knowledge)
+    if (any.cast<Stack<int>>())
+    {
+        cout << "any is a Stack" << endl;
+    }
+
+    if (any.cast<Queue<int>>())
+    {
+        cout << "any is a Queue" << endl;
+    }
+
+    cout << "*********" << endl;
+
     std::vector<Any> v;
     v.emplace_back(stack);
     v.emplace_back(queue);

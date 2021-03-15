@@ -19,6 +19,7 @@ private:
     {
     public:
         virtual CloneablePushPopInterface *clone() = 0;
+        virtual void *native() = 0;
     };
 
     template <typename PushPopType>
@@ -44,6 +45,11 @@ private:
         CloneablePushPopInterface *clone()
         {
             return new PushPopDelegate(m_native);
+        }
+
+        void *native()
+        {
+            return &m_native;
         }
 
     private:
@@ -103,6 +109,17 @@ public:
     std::optional<ValueType> pop()
     {
         return m_delegate->pop();
+    }
+
+    template <typename T>
+    T *cast()
+    {
+        //uses RTTI, can we avoid this somehow?
+        if (dynamic_cast<PushPopDelegate<T> *>(m_delegate))
+        {
+            return static_cast<T *>(m_delegate->native());
+        }
+        return nullptr;
     }
 
 private:
