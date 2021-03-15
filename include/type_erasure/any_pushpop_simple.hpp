@@ -17,7 +17,7 @@ private:
     class PushPopDelegate : public PushPopInterface<ValueType>
     {
     public:
-        PushPopDelegate(PushPopType &obj) : m_native(obj)
+        PushPopDelegate(const PushPopType &obj) : m_native(obj)
         {
         }
 
@@ -38,10 +38,8 @@ private:
 public:
     //PushPopType has to implement the PushPop concept
     template <typename PushPopType>
-    AnyPushPop(PushPopType &&obj)
+    AnyPushPop(const PushPopType &obj) : m_delegate(std::make_shared<PushPopDelegate<PushPopType>>(obj))
     {
-        // we accept anything as long as we can construct a PushPopDelegate from it
-        m_delegate = std::make_shared<PushPopDelegate<PushPopType>>(std::forward<PushPopType>(obj));
     }
 
     AnyPushPop(const AnyPushPop &other) = delete; //we cannot copy it with this implementation

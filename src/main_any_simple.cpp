@@ -16,17 +16,50 @@ int main(int argc, char **argv)
 
     Any any(stack);
 
+    stack.push(42);
+
+    // checks that we actually work on a copy
+    auto result = any.pop();
+    if (result)
+    {
+        cout << "any pop " << *result << endl;
+    }
+    else
+    {
+        cout << "any is empty" << endl;
+    }
+
+    any.push(37);
+    result = stack.pop();
+    if (result)
+    {
+        cout << "stack pop " << *result << endl;
+    }
+    else
+    {
+        cout << "stack is empty" << endl;
+    }
+
+    cout << "******vector test*********" << endl;
+
     std::vector<Any> v;
     v.emplace_back(stack);
     v.emplace_back(queue);
-    v.emplace_back(any); // AnyPushPop also implements the concept itself
 
     //v.emplace_back(pushOnly); //error, does not implement PushPop concept
 
-    for (auto &any : v)
+    for (auto &obj : v)
     {
-        any.push(73);
-        any.pop();
+        obj.push(73);
+        auto result = obj.pop();
+        if (result)
+        {
+            cout << "pop " << *result << endl;
+        }
+        else
+        {
+            cout << "empty" << endl;
+        }
         cout << "*********" << endl;
     }
 
