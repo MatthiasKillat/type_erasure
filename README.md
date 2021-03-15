@@ -11,6 +11,7 @@ A heterogeneous container satisfies
 3) Copy and move semantics
 
 To easily use it with new types is useful to also
+
 4) not require the stored types to inherit from the interface
 
 It is sufficient for the types to implement the interface to be useable in the container.
